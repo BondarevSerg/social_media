@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.List;
 
+
 /**
  * Пользователь
  */
@@ -54,4 +55,13 @@ public class User {
      */
     @OneToMany(mappedBy = "user")
     private List<Post> posts;
+
+    /**
+     * Список друзей
+     */
+    @OneToMany(mappedBy = "user")
+    private List<Friendship> myFriends;
+
+
+
 }

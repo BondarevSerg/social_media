@@ -54,7 +54,7 @@ public class UserController {
 
 
     /**
-     * удаление пользователя по id(кроме ADMIN)
+     * удаление пользователя по id
      * @param id
      * @return
      */

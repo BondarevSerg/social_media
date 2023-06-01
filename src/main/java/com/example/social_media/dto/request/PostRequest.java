@@ -17,5 +17,5 @@ public class PostRequest {
      * id автор поста
      */
 
-    private Long UserId;
+    private Long user_id;
 }

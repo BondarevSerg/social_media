@@ -68,6 +68,11 @@ public class UserServiceImp implements UserService {
 
     @Override
     public void updateUser(Long id, UserRequest userRequest) {
-
+          var user = userRepository.findById(id)
+                  .orElseThrow(() -> new RuntimeException("Не найден пользователь по идентификатору: " + id));
+          user.setLogin(user.getLogin());
+          user.setPassword(userRequest.getPassword());
+          user.setEmail(userRequest.getEmail());
+          userRepository.save(user);
     }
 }
