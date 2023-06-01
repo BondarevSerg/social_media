@@ -4,17 +4,18 @@ import jakarta.persistence.*;
 import lombok.*;
 
 /**
- * Пост пользователя
+ * Дружба
  */
-
 @Entity
-@Table(name = "post")
+@Table(name = "friendship")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(of = "id")
-public class Post {
+public class Friendship {
+
+
     /**
      * id
      */
@@ -24,15 +25,18 @@ public class Post {
     private Long id;
 
     /**
-     * тело поста
-     */
-    @Column(name = "message")
-    private String message;
-
-    /**
-     * автор поста
+     * пользователь
      */
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    /**
+     * его друг
+     */
+    @ManyToOne
+    @JoinColumn(name = "friend_id", referencedColumnName = "id")
+    private User friend;
+
+
 }

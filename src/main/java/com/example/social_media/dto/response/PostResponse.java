@@ -24,5 +24,5 @@ public class PostResponse {
      * id автора поста
      */
 
-    private Long userId;
+    private Long user_id;
 }

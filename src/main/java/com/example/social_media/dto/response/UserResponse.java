@@ -1,9 +1,11 @@
 package com.example.social_media.dto.response;
 
 
+
 import lombok.Data;
 
 import java.util.List;
+import java.util.Set;
 
 @Data
 
@@ -35,4 +37,9 @@ public class UserResponse {
      */
 
     private List<PostResponse> posts;
+
+    /**
+     * список друзей
+     */
+    private List<FriendshipResponse>  myFriends;
 }

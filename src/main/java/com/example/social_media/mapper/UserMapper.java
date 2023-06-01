@@ -7,13 +7,13 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 
-@Mapper(uses = { PostMapper.class })
+@Mapper(uses = { PostMapper.class, FriendshipMapper.class })
 
 public interface UserMapper {
 
     UserMapper MAPPER = Mappers.getMapper(UserMapper.class);
 
     @Mapping(source = "id", target = "id")
-//    @Mapping(source = "posts", target = "posts")
+//    @Mapping(source = "myFriends", target = "myFriends")
     UserResponse toDto(User user);
 }

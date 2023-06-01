@@ -19,7 +19,7 @@ public interface PostService {
      *
      * @return
      */
-    List<PostResponse> getAllPostsByUserId();
+    List<PostResponse> getAllPostsByUserId(Long id);
     /**
      * сохранение нового поста
      *
