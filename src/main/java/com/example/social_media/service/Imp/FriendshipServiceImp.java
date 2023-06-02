@@ -26,9 +26,6 @@ public class FriendshipServiceImp implements FriendshipService {
 
     @Override
     public List<FriendshipResponse> getFriendshipByUserId(Long id) {
-//        var friendship = friendshipRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Не найдена дружба по идентификатору: " + id));
-//        return FriendshipMapper.MAPPER.toDto(friendship);
 
         return friendshipRepository.findAllByUserId(id).stream()
                 .map(FriendshipMapper.MAPPER::toDto)
