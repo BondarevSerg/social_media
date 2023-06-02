@@ -55,6 +55,7 @@ public class PostServiceImp implements PostService {
                       .message(postRequest.getMessage())
                       .user(User.builder().id(postRequest.getUser_id()).build())
                       .build();
+              postRepository.save(post);
     }
 
     /**

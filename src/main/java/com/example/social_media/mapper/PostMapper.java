@@ -13,6 +13,6 @@ public interface PostMapper {
     PostMapper MAPPER = Mappers.getMapper(PostMapper.class);
 
     @Mapping(source = "id", target = "id")
-
+    @Mapping(source = "user.id", target = "user_id")
     PostResponse toDto(Post post);
 }

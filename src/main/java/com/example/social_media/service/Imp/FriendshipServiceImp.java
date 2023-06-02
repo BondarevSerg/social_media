@@ -5,7 +5,6 @@ import com.example.social_media.dto.response.FriendshipResponse;
 import com.example.social_media.entity.Friendship;
 import com.example.social_media.entity.User;
 import com.example.social_media.mapper.FriendshipMapper;
-import com.example.social_media.mapper.PostMapper;
 import com.example.social_media.repository.FriendshipRepository;
 import com.example.social_media.service.FriendshipService;
 import lombok.RequiredArgsConstructor;
@@ -26,9 +25,6 @@ public class FriendshipServiceImp implements FriendshipService {
 
     @Override
     public List<FriendshipResponse> getFriendshipByUserId(Long id) {
-//        var friendship = friendshipRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Не найдена дружба по идентификатору: " + id));
-//        return FriendshipMapper.MAPPER.toDto(friendship);
 
         return friendshipRepository.findAllByUserId(id).stream()
                 .map(FriendshipMapper.MAPPER::toDto)
@@ -64,22 +60,19 @@ public class FriendshipServiceImp implements FriendshipService {
                 .build());
     }
     /**
-     * удаление  дружбы
+     * удаление  дружбы  по id пользователя
      *
-     * @param friendshipRequest
+     * @param id
      */
     @Override
-    public void deleteFriendship(FriendshipRequest friendshipRequest) {
+    public void deleteFriendship(Long id) {
 
-        var friendship1 = friendshipRepository
-                .findFriendshipByUserIdAndFriendId(friendshipRequest.getUser_id(),
-                        friendshipRequest.getFriend_id());
+        var friendship = friendshipRepository
+                .findFriendshipByUserId(id);
 
-        var friendship2 = friendshipRepository
-                .findFriendshipByUserIdAndFriendId(friendshipRequest.getFriend_id(),
-                        friendshipRequest.getUser_id());
-        friendshipRepository.delete(friendship1);
-        friendshipRepository.delete(friendship2);
+
+        friendshipRepository.delete(friendship);
+
 
 
     }
