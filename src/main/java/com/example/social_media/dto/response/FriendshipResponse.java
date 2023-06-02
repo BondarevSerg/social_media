@@ -6,9 +6,14 @@ import lombok.Data;
 public class FriendshipResponse {
 
     /**
-     * id пользователя
+     * id
      */
     private Long id;
+
+    /**
+     * id пользователя
+     */
+    private Long user_id;
 
     /**
      * id друга

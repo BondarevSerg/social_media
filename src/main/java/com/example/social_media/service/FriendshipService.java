@@ -24,9 +24,9 @@ public interface FriendshipService {
     /**
      * удаление дружбы
      *
-     * @param friendshipRequest
+     * @param id
      */
-    void deleteFriendship(FriendshipRequest friendshipRequest);
+    void deleteFriendship(Long id);
 
 
 }

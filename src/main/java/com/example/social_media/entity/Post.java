@@ -2,6 +2,8 @@ package com.example.social_media.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * Пост пользователя
@@ -34,5 +36,6 @@ public class Post {
      */
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 }

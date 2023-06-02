@@ -2,6 +2,8 @@ package com.example.social_media.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  * Дружба
@@ -29,6 +31,7 @@ public class Friendship {
      */
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
     /**
@@ -36,6 +39,7 @@ public class Friendship {
      */
     @ManyToOne
     @JoinColumn(name = "friend_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User friend;
 
 

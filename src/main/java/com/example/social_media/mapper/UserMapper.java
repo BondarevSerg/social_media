@@ -14,6 +14,6 @@ public interface UserMapper {
     UserMapper MAPPER = Mappers.getMapper(UserMapper.class);
 
     @Mapping(source = "id", target = "id")
-//    @Mapping(source = "myFriends", target = "myFriends")
+
     UserResponse toDto(User user);
 }
