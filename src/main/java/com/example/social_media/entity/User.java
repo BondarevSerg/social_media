@@ -62,6 +62,12 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Friendship> myFriends;
 
+    /**
+     * Список подписчиков
+     */
+    @OneToMany(mappedBy = "user")
+    private List<Follower> myFollowers;
+
 
 
 }

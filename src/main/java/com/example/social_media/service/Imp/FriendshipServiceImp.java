@@ -41,23 +41,13 @@ public class FriendshipServiceImp implements FriendshipService {
     public void saveFriendship(FriendshipRequest friendshipRequest) {
 
         //сохраняем в БД user и friend
-        friendshipRepository.save(Friendship.builder()
-                .user(User.builder()
-                        .id(friendshipRequest.getUser_id())
-                        .build())
-                .friend(User.builder()
-                        .id(friendshipRequest.getFriend_id())
-                        .build())
-                .build());
-        //и одновременно сохраняем в БД friend и user, чтобы связать их
-        friendshipRepository.save(Friendship.builder()
-                .user(User.builder()
-                        .id(friendshipRequest.getFriend_id())
-                        .build())
-                .friend(User.builder()
-                        .id(friendshipRequest.getUser_id())
-                        .build())
-                .build());
+        friendshipRepository.save(friendshipForSave(friendshipRequest.getUser_id()
+                ,friendshipRequest.getFriend_id()));
+        //и сохраняем в обратном порядке, чтобы связать их
+        friendshipRepository.save(friendshipForSave(friendshipRequest.getFriend_id()
+                ,friendshipRequest.getUser_id()));
+
+
     }
     /**
      * удаление  дружбы  по id пользователя
@@ -70,10 +60,18 @@ public class FriendshipServiceImp implements FriendshipService {
         var friendship = friendshipRepository
                 .findFriendshipByUserId(id);
 
-
         friendshipRepository.delete(friendship);
+    }
 
-
-
+    //вынес в отдельный метод билдер по id
+    protected Friendship friendshipForSave(Long idUser, Long idFriend){
+        return Friendship.builder()
+                 .user(User.builder()
+                         .id(idUser)
+                         .build())
+                .friend(User.builder()
+                        .id(idFriend)
+                        .build())
+                .build();
     }
 }
