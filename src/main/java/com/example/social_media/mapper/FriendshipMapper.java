@@ -1,9 +1,7 @@
 package com.example.social_media.mapper;
 
 
-import com.example.social_media.dto.request.FriendshipRequest;
 import com.example.social_media.dto.response.FriendshipResponse;
-
 import com.example.social_media.entity.Friendship;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
