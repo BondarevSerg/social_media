@@ -5,6 +5,7 @@ import com.example.social_media.dto.response.FriendshipResponse;
 import com.example.social_media.entity.Friendship;
 import com.example.social_media.entity.User;
 import com.example.social_media.mapper.FriendshipMapper;
+import com.example.social_media.repository.FollowerRepository;
 import com.example.social_media.repository.FriendshipRepository;
 import com.example.social_media.service.FriendshipService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class FriendshipServiceImp implements FriendshipService {
 
     private final FriendshipRepository friendshipRepository;
 
-
+    private final FollowersServiceImp followersService;
     @Override
     public List<FriendshipResponse> getFriendshipByUserId(Long id) {
 
@@ -50,17 +51,28 @@ public class FriendshipServiceImp implements FriendshipService {
 
     }
     /**
-     * удаление  дружбы  по id пользователя
+     * удаление  дружбы  (так же удаляется подписка на бывшего друга)
      *
-     * @param id
+     * @param friendshipRequest
      */
     @Override
-    public void deleteFriendship(Long id) {
+    public void deleteFriendship(FriendshipRequest friendshipRequest) {
+          var friendship1 = friendshipRepository
+                  .findByUserIdAndFriendId
+                          (friendshipRequest.getUser_id(), friendshipRequest.getFriend_id());
 
-        var friendship = friendshipRepository
-                .findFriendshipByUserId(id);
+        var friendship2 = friendshipRepository
+                .findByUserIdAndFriendId
+                        (friendshipRequest.getFriend_id(), friendshipRequest.getUser_id());
 
-        friendshipRepository.delete(friendship);
+//        var follower =followerRepository.findByUserIdAndFollowerId(friendshipRequest.getFriend_id(),
+//                friendshipRequest.getUser_id());
+//        followerRepository.delete(follower);
+        followersService.deleteByUserIdAndFollowerId(friendshipRequest.getFriend_id(),
+                friendshipRequest.getUser_id());
+        friendshipRepository.delete(friendship1);
+        friendshipRepository.delete(friendship2);
+
     }
 
     //вынес в отдельный метод билдер по id

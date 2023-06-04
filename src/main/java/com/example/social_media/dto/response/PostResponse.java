@@ -1,6 +1,6 @@
 package com.example.social_media.dto.response;
 
-import com.example.social_media.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -15,10 +15,10 @@ public class PostResponse {
     private Long id;
 
     /**
-     * Сообщение(содержимое поста)
+     * содержимое поста(например текст)
      */
 
-    private String message;
+    private String postMessage;
 
     /**
      * id автора поста

@@ -52,7 +52,7 @@ public class PostServiceImp implements PostService {
     @Override
     public void savePost(PostRequest postRequest) {
               var post = Post.builder()
-                      .message(postRequest.getMessage())
+                      .postMessage(postRequest.getPostMessage())
                       .user(User.builder().id(postRequest.getUser_id()).build())
                       .build();
               postRepository.save(post);
@@ -76,7 +76,7 @@ public class PostServiceImp implements PostService {
     public void updatePost(Long id, PostRequest postRequest) {
            var post=postRepository.findById(id)
                    .orElseThrow(()-> new RuntimeException("не найден пост по идентификатору: " + id));
-           post.setMessage(post.getMessage());
+           post.setPostMessage(post.getPostMessage());
 
 
     }

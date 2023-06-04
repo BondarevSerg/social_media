@@ -27,9 +27,14 @@ public interface FollowerService {
     void saveFollower(FollowerRequest followerRequest);
 
     /**
-     * удаление подписки
+     * удаление подписки по id
      *
      * @param id
      */
     void deleteFollower(Long id);
+    /**
+     * удаление подписки по id пользователя и подписчика
+
+     */
+    public void deleteByUserIdAndFollowerId(Long user_id, Long friend_id);
 }

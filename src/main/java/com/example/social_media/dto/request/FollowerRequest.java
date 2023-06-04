@@ -16,7 +16,7 @@ public class FollowerRequest {
      */
     private Long user_id;
     /**
-     * id подписчика
+     * id его подписчика
      */
     private Long follower_id;
 }

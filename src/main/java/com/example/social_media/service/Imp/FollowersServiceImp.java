@@ -38,4 +38,11 @@ public class FollowersServiceImp implements FollowerService {
     public void deleteFollower(Long id) {
              followerRepository.deleteById(id);
     }
+
+    @Override
+    public void deleteByUserIdAndFollowerId(Long user_id, Long friend_id) {
+        var follower =followerRepository.findByUserIdAndFollowerId(friend_id,
+                user_id);
+        followerRepository.delete(follower);
+    }
 }

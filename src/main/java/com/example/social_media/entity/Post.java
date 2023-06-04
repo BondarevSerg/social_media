@@ -28,8 +28,8 @@ public class Post {
     /**
      * тело поста
      */
-    @Column(name = "message")
-    private String message;
+    @Column(name = "postmessage")
+    private String postMessage;
 
     /**
      * автор поста
