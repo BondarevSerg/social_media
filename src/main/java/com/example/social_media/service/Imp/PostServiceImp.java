@@ -10,6 +10,8 @@ import com.example.social_media.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -54,6 +56,7 @@ public class PostServiceImp implements PostService {
               var post = Post.builder()
                       .postMessage(postRequest.getPostMessage())
                       .user(User.builder().id(postRequest.getUser_id()).build())
+                      .date(LocalDateTime.now())
                       .build();
               postRepository.save(post);
     }

@@ -57,21 +57,20 @@ public class FriendshipServiceImp implements FriendshipService {
      */
     @Override
     public void deleteFriendship(FriendshipRequest friendshipRequest) {
-          var friendship1 = friendshipRepository
+          var friendshipUserFriend = friendshipRepository
                   .findByUserIdAndFriendId
                           (friendshipRequest.getUser_id(), friendshipRequest.getFriend_id());
 
-        var friendship2 = friendshipRepository
+        var friendshipFriendUser = friendshipRepository
                 .findByUserIdAndFriendId
                         (friendshipRequest.getFriend_id(), friendshipRequest.getUser_id());
 
-//        var follower =followerRepository.findByUserIdAndFollowerId(friendshipRequest.getFriend_id(),
-//                friendshipRequest.getUser_id());
-//        followerRepository.delete(follower);
+//удаляемся из подписчиков у друга
         followersService.deleteByUserIdAndFollowerId(friendshipRequest.getFriend_id(),
                 friendshipRequest.getUser_id());
-        friendshipRepository.delete(friendship1);
-        friendshipRepository.delete(friendship2);
+        //и удаляем дружбу
+        friendshipRepository.delete(friendshipUserFriend);
+        friendshipRepository.delete(friendshipFriendUser);
 
     }
 
