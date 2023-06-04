@@ -8,10 +8,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class PostRequest {
     /**
-     * Сообщение(содержимое поста)
+     * содержимое поста
      */
 
-    private String message;
+    private String postMessage;
 
     /**
      * id автор поста

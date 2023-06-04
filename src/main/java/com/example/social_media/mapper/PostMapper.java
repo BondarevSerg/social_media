@@ -14,5 +14,8 @@ public interface PostMapper {
 
     @Mapping(source = "id", target = "id")
     @Mapping(source = "user.id", target = "user_id")
+    @Mapping(source = "postMessage", target = "postMessage")
+    @Mapping(source = "date", target = "date")
     PostResponse toDto(Post post);
+
 }

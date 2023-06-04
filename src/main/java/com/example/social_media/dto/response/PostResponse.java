@@ -1,8 +1,11 @@
 package com.example.social_media.dto.response;
 
-import com.example.social_media.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -15,14 +18,16 @@ public class PostResponse {
     private Long id;
 
     /**
-     * Сообщение(содержимое поста)
+     * содержимое поста(например текст)
      */
 
-    private String message;
+    private String postMessage;
 
     /**
      * id автора поста
      */
 
     private Long user_id;
+
+    private  LocalDateTime date ;
 }

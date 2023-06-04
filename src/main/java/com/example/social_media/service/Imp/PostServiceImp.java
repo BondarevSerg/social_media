@@ -10,6 +10,8 @@ import com.example.social_media.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,8 +54,9 @@ public class PostServiceImp implements PostService {
     @Override
     public void savePost(PostRequest postRequest) {
               var post = Post.builder()
-                      .message(postRequest.getMessage())
+                      .postMessage(postRequest.getPostMessage())
                       .user(User.builder().id(postRequest.getUser_id()).build())
+                      .date(LocalDateTime.now())
                       .build();
               postRepository.save(post);
     }
@@ -76,7 +79,7 @@ public class PostServiceImp implements PostService {
     public void updatePost(Long id, PostRequest postRequest) {
            var post=postRepository.findById(id)
                    .orElseThrow(()-> new RuntimeException("не найден пост по идентификатору: " + id));
-           post.setMessage(post.getMessage());
+           post.setPostMessage(post.getPostMessage());
 
 
     }

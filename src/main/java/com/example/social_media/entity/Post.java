@@ -5,6 +5,9 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 /**
  * Пост пользователя
  */
@@ -28,8 +31,14 @@ public class Post {
     /**
      * тело поста
      */
-    @Column(name = "message")
-    private String message;
+    @Column(name = "postmessage")
+    private String postMessage;
+
+    /**
+     * дата написания поста
+     */
+    @Column(name = "postdatatime")
+    private LocalDateTime date ;
 
     /**
      * автор поста
@@ -38,4 +47,6 @@ public class Post {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
+
+
 }
