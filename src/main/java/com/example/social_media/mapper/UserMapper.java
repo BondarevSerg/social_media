@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 
-@Mapper(uses = { PostMapper.class, FriendshipMapper.class })
+@Mapper(uses = { PostMapper.class, FriendshipMapper.class, FollowerMapper.class })
 
 public interface UserMapper {
 
