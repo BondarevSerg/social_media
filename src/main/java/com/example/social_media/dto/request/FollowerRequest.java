@@ -11,8 +11,12 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class FollowerRequest {
-
+    /**
+     * id пользователя
+     */
     private Long user_id;
-
+    /**
+     * id подписчика
+     */
     private Long follower_id;
 }

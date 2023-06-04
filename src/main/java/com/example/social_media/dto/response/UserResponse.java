@@ -42,4 +42,9 @@ public class UserResponse {
      * список друзей
      */
     private List<FriendshipResponse>  myFriends;
+
+    /**
+     * список подписчиков
+     */
+    private List<FollowerResponse>  myFollowers;
 }
