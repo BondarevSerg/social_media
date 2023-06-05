@@ -8,14 +8,13 @@ import org.mapstruct.factory.Mappers;
 
 
 @Mapper(uses = { PostMapper.class, FriendshipMapper.class,
-        FollowerMapper.class, InviteMapper.class })
+        FollowerMapper.class, InviteMapper.class, MessageMapper.class })
 
 public interface UserMapper {
 
     UserMapper MAPPER = Mappers.getMapper(UserMapper.class);
 
     @Mapping(source = "id", target = "id")
-     @Mapping(source = "myInvitesIn", target = "myInvitesIn")
-    @Mapping(source = "myInvitesOut", target = "myInvitesOut")
+
     UserResponse toDto(User user);
 }

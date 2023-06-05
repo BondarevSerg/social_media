@@ -1,10 +1,8 @@
 package com.example.social_media.controller;
 
-import com.example.social_media.dto.request.FollowerRequest;
+
 import com.example.social_media.dto.request.InviteRequest;
-import com.example.social_media.dto.response.FollowerResponse;
 import com.example.social_media.dto.response.InviteResponse;
-import com.example.social_media.repository.InviteRepository;
 import com.example.social_media.service.Imp.InviteServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
