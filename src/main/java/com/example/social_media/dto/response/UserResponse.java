@@ -2,6 +2,8 @@ package com.example.social_media.dto.response;
 
 
 
+import com.example.social_media.entity.Invite;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 import java.util.List;
@@ -47,4 +49,16 @@ public class UserResponse {
      * список подписчиков
      */
     private List<FollowerResponse>  myFollowers;
+
+    /**
+     * Список входящих заявок
+     */
+
+    private List<InviteResponse> myInvitesIn;
+
+    /**
+     * Список отправленных заявок
+     */
+
+    private List<InviteResponse> myInvitesOut;
 }

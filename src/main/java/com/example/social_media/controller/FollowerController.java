@@ -14,7 +14,7 @@ import java.util.List;
  * контроллер работы с подписками
  */
 @RestController
-@RequestMapping("/follower")
+@RequestMapping("/followers")
 @RequiredArgsConstructor
 public class FollowerController {
 
@@ -29,6 +29,16 @@ public class FollowerController {
     public List<FollowerResponse> getAllFollowerByUserId(@PathVariable("id")Long id) {
         return followersService.getFollowersByUserId(id);
     }
+    /**
+     * Получение подписки по id
+     *
+     * @return
+     */
+    @GetMapping("/follower/{id}")
+    public FollowerResponse getFollowerById(@PathVariable("id")Long id) {
+        return followersService.getFollowersById(id);
+    }
+
 
     /**
      * сохранение новой подписки

@@ -67,17 +67,7 @@ public class UserServiceImp implements UserService {
     @Override
     public void deleteUser(Long id) {
 
-//        var user = userRepository.findById(id)
-//                .orElseThrow(() -> new RuntimeException("Не найден пользователь по идентификатору: " + id));
-//        var frList=user.getMyFriends().stream()
-//                        .map(f -> FriendshipRequest.builder()
-//                                        .user_id(user.getId())
-//                                        .build())
-//                            .collect(Collectors.toList());
-//
-//           for(var fr: frList){
-//               friendshipService.deleteFriendship(fr);
-//           }
+
           userRepository.deleteById(id);
     }
 
