@@ -3,6 +3,9 @@ package com.example.social_media.controller;
 import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.UserResponse;
 import com.example.social_media.service.Imp.UserServiceImp;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +19,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@Tag(
+        name = "Пользователь",
+        description = "контроллер работы с пользователем"
+)
 public class UserController {
 
     private  final UserServiceImp userService;
@@ -26,6 +33,7 @@ public class UserController {
      * @return
      */
     @GetMapping()
+    @Operation(summary = "Получение списка пользователей")
     public List<UserResponse> getAllUsers() {
         return userService.getAllUsers();
     }
@@ -36,7 +44,8 @@ public class UserController {
      * @return
      */
     @GetMapping("/{id}")
-    public UserResponse getUserById(@PathVariable("id")Long id) {
+    @Operation(summary = "Получение  пользователя по id")
+    public UserResponse getUserById(@Parameter(description = "id пользователя")@PathVariable("id")Long id) {
         return userService.getUserById(id);
     }
 
@@ -46,6 +55,7 @@ public class UserController {
      * @return
      */
     @PostMapping()
+    @Operation(summary = "сохранение нового пользователя")
     public ResponseEntity<HttpStatus> create(@RequestBody UserRequest userRequest) {
 
         userService.saveUser(userRequest);
@@ -59,7 +69,8 @@ public class UserController {
      * @return
      */
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> delete(@PathVariable ("id")Long id) {
+    @Operation(summary = "удаление пользователя по id")
+    public ResponseEntity<HttpStatus> delete(@Parameter(description = "id пользователя")@PathVariable ("id")Long id) {
 
         userService.deleteUser(id);
         return ResponseEntity.ok(HttpStatus.OK);
@@ -73,7 +84,8 @@ public class UserController {
      * @return
      */
     @PutMapping("/{id}")
-    public ResponseEntity<HttpStatus> update(@PathVariable ("id")Long id, UserRequest userRequest) {
+    @Operation(summary = "обновление  пользователя по id")
+    public ResponseEntity<HttpStatus> update(@Parameter(description = "id пользователя")@PathVariable ("id")Long id, UserRequest userRequest) {
 
         userService.updateUser(id, userRequest);
         return ResponseEntity.ok(HttpStatus.OK);

@@ -15,6 +15,9 @@ public interface UserMapper {
     UserMapper MAPPER = Mappers.getMapper(UserMapper.class);
 
     @Mapping(source = "id", target = "id")
-
+     @Mapping(source = "myInvitesIn", target = "myInvitesIn")
+    @Mapping(source = "myInvitesOut", target = "myInvitesOut")
+    @Mapping(source = "myMessageIn", target = "myMessageIn")
+    @Mapping(source = "myMessageOut", target = "myMessageOut")
     UserResponse toDto(User user);
 }
