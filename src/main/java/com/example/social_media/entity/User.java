@@ -68,6 +68,16 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Follower> myFollowers;
 
+    /**
+     * Список входящих заявок
+     */
+    @OneToMany(mappedBy = "userto")
+    private List<Invite> myInvitesIn;
 
+    /**
+     * Список отправленных заявок
+     */
+    @OneToMany(mappedBy = "userfrom")
+    private List<Invite> myInvitesOut;
 
 }
