@@ -35,7 +35,7 @@ public interface UserService {
     void deleteUser(Long id);
 
     /**
-     * обновление данных польтзоваьтеля по его id
+     * обновление данных пользователя по его id
      */
     void updateUser(Long id, UserRequest userRequest);
 

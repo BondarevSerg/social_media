@@ -61,4 +61,16 @@ public class UserResponse {
      */
 
     private List<InviteResponse> myInvitesOut;
+
+    /**
+     * Список входящих сообщений
+     */
+
+    private List<MessageResponse> myMessageIn;
+
+    /**
+     * Список отправленных сообщений
+     */
+
+    private List<MessageResponse> myMessageOut;
 }

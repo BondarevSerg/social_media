@@ -80,4 +80,16 @@ public class User {
     @OneToMany(mappedBy = "userfrom")
     private List<Invite> myInvitesOut;
 
+    /**
+     * Список входящих сообщений
+     */
+    @OneToMany(mappedBy = "userto")
+    private List<Message> myMessageIn;
+
+    /**
+     * Список отправленных сщбщений
+     */
+    @OneToMany(mappedBy = "userfrom")
+    private List<Message> myMessageOut;
+
 }

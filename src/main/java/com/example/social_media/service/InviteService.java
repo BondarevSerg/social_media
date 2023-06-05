@@ -1,11 +1,11 @@
 package com.example.social_media.service;
 
-import com.example.social_media.dto.request.FollowerRequest;
+
 import com.example.social_media.dto.request.InviteRequest;
-import com.example.social_media.dto.response.FollowerResponse;
 import com.example.social_media.dto.response.InviteResponse;
 
 import java.util.List;
+
 
 public interface InviteService {
     /**
