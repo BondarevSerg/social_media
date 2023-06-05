@@ -44,14 +44,14 @@ public class FriendShipController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
     /**
-     * удаление дружбы
-     * @param friendshipRequest
+     * удаление дружбы по id
+     * @param id
      * @return
      */
-    @DeleteMapping()
-    public ResponseEntity<HttpStatus> delete(@RequestBody FriendshipRequest friendshipRequest) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> delete(@PathVariable("id")Long id) {
 
-        friendshipService.deleteFriendship(friendshipRequest);
+        friendshipService.deleteFriendship(id);
         return ResponseEntity.ok(HttpStatus.OK);
 
     }

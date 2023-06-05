@@ -53,21 +53,20 @@ public class FriendshipServiceImp implements FriendshipService {
     /**
      * удаление  дружбы  (так же удаляется подписка на бывшего друга)
      *
-     * @param friendshipRequest
+     * @param id
      */
     @Override
-    public void deleteFriendship(FriendshipRequest friendshipRequest) {
-          var friendshipUserFriend = friendshipRepository
-                  .findByUserIdAndFriendId
-                          (friendshipRequest.getUser_id(), friendshipRequest.getFriend_id());
-
+    public void deleteFriendship(Long id) {
+          var friendshipUserFriend = friendshipRepository.findById(id)
+                  .orElseThrow(() -> new RuntimeException("Не найдена дружба по идентификатору: " + id));
+//нам нужны две сущности для удаления дружбы
         var friendshipFriendUser = friendshipRepository
                 .findByUserIdAndFriendId
-                        (friendshipRequest.getFriend_id(), friendshipRequest.getUser_id());
+                        (friendshipUserFriend.getFriend().getId(),
+                                friendshipUserFriend.getUser().getId());
 
 //удаляемся из подписчиков у друга
-        followersService.deleteByUserIdAndFollowerId(friendshipRequest.getFriend_id(),
-                friendshipRequest.getUser_id());
+        followersService.deleteByUserIdAndFollowerId(friendshipUserFriend.getFriend().getId(), friendshipUserFriend.getUser().getId());
         //и удаляем дружбу
         friendshipRepository.delete(friendshipUserFriend);
         friendshipRepository.delete(friendshipFriendUser);
