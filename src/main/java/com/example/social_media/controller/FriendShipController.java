@@ -1,9 +1,7 @@
 package com.example.social_media.controller;
 
 import com.example.social_media.dto.request.FriendshipRequest;
-import com.example.social_media.dto.request.PostRequest;
 import com.example.social_media.dto.response.FriendshipResponse;
-import com.example.social_media.dto.response.PostResponse;
 import com.example.social_media.service.Imp.FriendshipServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
