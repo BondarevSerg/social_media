@@ -21,8 +21,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Tag(
         name = "Подписки",
-        description = "Все методы для работы с подписками"
-)
+        description = "Все методы для работы с подписками")
 public class FollowerController {
 
     private final FollowersServiceImp followersService;
