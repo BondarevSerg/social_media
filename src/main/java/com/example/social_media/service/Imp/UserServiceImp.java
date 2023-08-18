@@ -1,18 +1,14 @@
 package com.example.social_media.service.Imp;
 
 
-import com.example.social_media.dto.request.UserRegistrationRequest;
+
 import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.UserResponse;
 import com.example.social_media.entity.User;
 import com.example.social_media.mapper.UserMapper;
 import com.example.social_media.repository.UserRepository;
-import com.example.social_media.security.UserDetailsImp;
 import com.example.social_media.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -62,12 +58,12 @@ public class UserServiceImp implements UserService {
      * @return
      */
     @Override
-    public void saveUser(UserRegistrationRequest userRegistrationRequest) {
+    public void saveUser(UserRequest userRequest) {
 
         var user = User.builder()
-                .login(userRegistrationRequest.getLogin())
-                .password(passwordEncoder.encode(userRegistrationRequest.getPassword()))
-                .email(userRegistrationRequest.getEmail())
+                .login(userRequest.getLogin())
+                .password(passwordEncoder.encode(userRequest.getPassword()))
+                .email(userRequest.getEmail())
                 .roles(Set.of(roleService.getUserRole()))
                 .build();
 
@@ -76,7 +72,6 @@ public class UserServiceImp implements UserService {
 
     @Override
     public void deleteUser(Long id) {
-
         userRepository.deleteById(id);
     }
 

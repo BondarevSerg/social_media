@@ -1,11 +1,10 @@
 package com.example.social_media.entity;
 
-//import jakarta.persistence.*;
 import javax.persistence.*;
 
 import lombok.Data;
 
-import java.util.Set;
+
 
 @Entity
 @Data

@@ -1,9 +1,7 @@
 package com.example.social_media.controller;
 
 import com.example.social_media.dto.request.PostRequest;
-import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.PostResponse;
-import com.example.social_media.dto.response.UserResponse;
 import com.example.social_media.service.Imp.PostServiceImp;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

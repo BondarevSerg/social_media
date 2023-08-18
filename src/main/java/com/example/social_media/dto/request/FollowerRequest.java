@@ -1,6 +1,6 @@
 package com.example.social_media.dto.request;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Builder;
 import lombok.Data;
 
@@ -8,7 +8,6 @@ import lombok.Data;
  * запрос подписчик
  */
 @Data
-@AllArgsConstructor
 @Builder
 public class FollowerRequest {
     /**

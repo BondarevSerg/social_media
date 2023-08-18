@@ -2,12 +2,11 @@ package com.example.social_media.dto.response;
 
 
 
-//import com.example.social_media.entity.Invite;
-//import jakarta.persistence.OneToMany;
+
 import lombok.Data;
 
 import java.util.List;
-import java.util.Set;
+
 
 @Data
 

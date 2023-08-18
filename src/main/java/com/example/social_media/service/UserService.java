@@ -1,6 +1,6 @@
 package com.example.social_media.service;
 
-import com.example.social_media.dto.request.UserRegistrationRequest;
+
 import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.UserResponse;
 
@@ -26,9 +26,9 @@ public interface UserService {
     /**
      * сохранение нового пользователя
      *
-     * @param userRegistrationRequest
+     * @param userRequest
      */
-    void saveUser(UserRegistrationRequest userRegistrationRequest);
+    void saveUser(UserRequest userRequest );
 
     /**
      * удаление пользователя по id

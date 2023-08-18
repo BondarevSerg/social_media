@@ -5,7 +5,6 @@ package com.example.social_media.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -20,11 +19,8 @@ import java.util.stream.Collectors;
 @Component
 public class JwtTokenUtils {
 
-//    @Value("${jwt.secret}")
     private String secret = "secret";
-
-//    @Value("${jwt.lifetime}")
-    private Duration jwtLifetime = Duration.ofMinutes(10);
+    private Duration jwtLifetime = Duration.ofMinutes(30);//жизнь токена 30мин
 
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();

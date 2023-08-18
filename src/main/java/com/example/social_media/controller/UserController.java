@@ -1,6 +1,6 @@
 package com.example.social_media.controller;
 
-import com.example.social_media.dto.request.UserRegistrationRequest;
+
 import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.UserResponse;
 import com.example.social_media.service.Imp.UserServiceImp;
@@ -49,19 +49,6 @@ public class UserController {
     @Operation(summary = "Получение  пользователя по id")
     public UserResponse getUserById(@Parameter(description = "id пользователя")@PathVariable("id")Long id) {
         return userService.getUserById(id);
-    }
-
-    /**
-     * регистрация нового пользователя
-     * @param userRegistrationRequest
-     * @return
-     */
-    @PostMapping()
-    @Operation(summary = "регистрация нового пользователя")
-    public ResponseEntity<HttpStatus> create(@RequestBody UserRegistrationRequest userRegistrationRequest) {
-
-        userService.saveUser(userRegistrationRequest);
-        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 
