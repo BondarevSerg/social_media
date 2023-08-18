@@ -1,5 +1,6 @@
 package com.example.social_media.controller;
 
+import com.example.social_media.dto.request.UserRegistrationRequest;
 import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.UserResponse;
 import com.example.social_media.service.Imp.UserServiceImp;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -50,15 +52,15 @@ public class UserController {
     }
 
     /**
-     * сохранение нового пользователя
-     * @param userRequest
+     * регистрация нового пользователя
+     * @param userRegistrationRequest
      * @return
      */
     @PostMapping()
-    @Operation(summary = "сохранение нового пользователя")
-    public ResponseEntity<HttpStatus> create(@RequestBody UserRequest userRequest) {
+    @Operation(summary = "регистрация нового пользователя")
+    public ResponseEntity<HttpStatus> create(@RequestBody UserRegistrationRequest userRegistrationRequest) {
 
-        userService.saveUser(userRequest);
+        userService.saveUser(userRegistrationRequest);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
@@ -90,5 +92,15 @@ public class UserController {
         userService.updateUser(id, userRequest);
         return ResponseEntity.ok(HttpStatus.OK);
 
+    }
+
+    /**
+     * информация  о текущем пользователе
+     * @param principal
+     * @return
+     */
+    @GetMapping("/info")
+    public String userData(Principal principal) {
+        return principal.getName();
     }
 }

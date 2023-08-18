@@ -1,18 +1,24 @@
 package com.example.social_media.service.Imp;
 
-import com.example.social_media.dto.request.FriendshipRequest;
+
+import com.example.social_media.dto.request.UserRegistrationRequest;
 import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.UserResponse;
-import com.example.social_media.entity.Friendship;
 import com.example.social_media.entity.User;
 import com.example.social_media.mapper.UserMapper;
 import com.example.social_media.repository.UserRepository;
+import com.example.social_media.security.UserDetailsImp;
 import com.example.social_media.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -24,8 +30,10 @@ public class UserServiceImp implements UserService {
 
 
     private  final UserRepository userRepository;
+    private final RoleServiceImp roleService;
+    private final  PasswordEncoder passwordEncoder;
 
-    private final FriendshipServiceImp friendshipService;
+
 
     /**
      * Получение пользователя по id
@@ -38,7 +46,10 @@ public class UserServiceImp implements UserService {
                 .orElseThrow(() -> new RuntimeException("Не найден пользователь по идентификатору: " + id));
         return UserMapper.MAPPER.toDto(user);
     }
-
+    /**
+     * Получение списка пользователей
+     *
+     */
     @Override
     public List<UserResponse> getAllUsers() {
         return userRepository.findAll().stream()
@@ -47,18 +58,17 @@ public class UserServiceImp implements UserService {
     }
 
     /**
-     * Сохранение нового пользователя(с ролью USER)
+     * Сохранение (регистрация) нового пользователя(с ролью USER)
      * @return
      */
     @Override
-
-    public void saveUser(UserRequest userRequest) {
+    public void saveUser(UserRegistrationRequest userRegistrationRequest) {
 
         var user = User.builder()
-                .login(userRequest.getLogin())
-                .password(userRequest.getPassword())
-                .email(userRequest.getEmail())
-                .role("ROLE_USER")
+                .login(userRegistrationRequest.getLogin())
+                .password(passwordEncoder.encode(userRegistrationRequest.getPassword()))
+                .email(userRegistrationRequest.getEmail())
+                .roles(Set.of(roleService.getUserRole()))
                 .build();
 
         userRepository.save(user);
@@ -67,8 +77,7 @@ public class UserServiceImp implements UserService {
     @Override
     public void deleteUser(Long id) {
 
-
-          userRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
     @Override
@@ -80,4 +89,17 @@ public class UserServiceImp implements UserService {
           user.setEmail(userRequest.getEmail());
           userRepository.save(user);
     }
+
+    /**
+     * Получение пользователя по логину
+     * @param login
+     * @return
+     */
+
+    public Optional<User> findByLogin(String login) {
+
+        return Optional.ofNullable(userRepository.findByLogin(login));
+    }
+
+
 }

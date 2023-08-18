@@ -1,9 +1,12 @@
 package com.example.social_media.entity;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
+import javax.persistence.*;
+
 import lombok.*;
 
 import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -38,11 +41,7 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    /**
-     * роль
-     */
-    @Column(name = "role")
-    private String role;
+
 
     /**
      * почта
@@ -92,4 +91,8 @@ public class User {
     @OneToMany(mappedBy = "userfrom")
     private List<Message> myMessageOut;
 
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name = "user_roles",joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
+    private Set<Role> roles;
 }
