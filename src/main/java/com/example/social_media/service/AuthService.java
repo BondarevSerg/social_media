@@ -1,7 +1,7 @@
 package com.example.social_media.service;
 
 import com.example.social_media.dto.request.JwtRequest;
-import com.example.social_media.dto.request.UserRegistrationRequest;
+import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.JwtResponse;
 import com.example.social_media.exception.MyException;
 import com.example.social_media.security.UserDetailsServiceImp;
@@ -42,12 +42,12 @@ public class AuthService {
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    public ResponseEntity<?> saveUser(@RequestBody UserRegistrationRequest userRegistrationRequest) {
+    public ResponseEntity<?> saveUser(@RequestBody UserRequest userRequest) {
 
-        if (userService.findByLogin(userRegistrationRequest.getLogin()).isPresent()) {
+        if (userService.findByLogin(userRequest.getLogin()).isPresent()) {
             return new ResponseEntity<>(new MyException(HttpStatus.BAD_REQUEST.value(), "Пользователь с указанным именем уже существует"), HttpStatus.BAD_REQUEST);
         }
-       userService.saveUser(userRegistrationRequest);
+       userService.saveUser(userRequest);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 

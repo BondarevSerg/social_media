@@ -5,7 +5,6 @@ import com.example.social_media.dto.response.FriendshipResponse;
 import com.example.social_media.entity.Friendship;
 import com.example.social_media.entity.User;
 import com.example.social_media.mapper.FriendshipMapper;
-import com.example.social_media.repository.FollowerRepository;
 import com.example.social_media.repository.FriendshipRepository;
 import com.example.social_media.service.FriendshipService;
 import lombok.RequiredArgsConstructor;

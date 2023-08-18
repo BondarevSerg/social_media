@@ -1,6 +1,5 @@
 package com.example.social_media.entity;
 
-//import jakarta.persistence.*;
 import javax.persistence.*;
 
 import lombok.*;
