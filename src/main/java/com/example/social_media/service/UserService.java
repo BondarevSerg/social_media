@@ -1,11 +1,14 @@
 package com.example.social_media.service;
 
+import com.example.social_media.dto.request.UserRegistrationRequest;
 import com.example.social_media.dto.request.UserRequest;
 import com.example.social_media.dto.response.UserResponse;
 
 import java.util.List;
 
 public interface UserService {
+
+
     /**
      * Получение пользователя по id
      *
@@ -23,9 +26,9 @@ public interface UserService {
     /**
      * сохранение нового пользователя
      *
-     * @param userRequest
+     * @param userRegistrationRequest
      */
-    void saveUser(UserRequest userRequest);
+    void saveUser(UserRegistrationRequest userRegistrationRequest);
 
     /**
      * удаление пользователя по id
