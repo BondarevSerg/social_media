@@ -8,6 +8,8 @@ import com.example.social_media.mapper.PostMapper;
 import com.example.social_media.repository.PostRepository;
 import com.example.social_media.service.PostService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -41,8 +43,9 @@ public class PostServiceImp implements PostService {
      * @return
      */
     @Override
-    public List<PostResponse> getAllPostsByUserId(Long id) {
-        return postRepository.findAllByUserId(id).stream()
+    public List<PostResponse> getAllPostsByUserId(Long id, Integer pageNumber) {
+
+        return postRepository.findAllByUserId(id, PageRequest.of(pageNumber,3)).stream()
                 .map(PostMapper.MAPPER::toDto)
                 .collect(Collectors.toList());
     }
