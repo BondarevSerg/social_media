@@ -32,10 +32,11 @@ public class PostController {
      *
      * @return
      */
-    @GetMapping("/{id}")
-    @Operation(summary = "Получение списка постов по id пользователя")
-    public List<PostResponse> getAllPostByUserId(@Parameter(description = "id пользователя")@PathVariable("id")Long id) {
-        return postService.getAllPostsByUserId(id);
+    @GetMapping("/{id}/{pageNumber}")
+    @Operation(summary = "Получение списка постов по id пользователя(по 3 поста на страницу)")
+    public List<PostResponse> getAllPostByUserId(@Parameter(description = "id пользователя")@PathVariable("id")Long id,
+                                                 @Parameter(description = "Номер страницы")@PathVariable("pageNumber")Integer pageNumber) {
+        return postService.getAllPostsByUserId(id, pageNumber);
     }
 
     /**
