@@ -2,10 +2,27 @@ create table user
 (
     id       int auto_increment
         primary key,
-    login    varchar(10) not null,
-    password varchar(50) not null,
-    role     varchar(10) null,
-    email    varchar(20) not null
+    login    varchar(10)  not null,
+    password varchar(100) not null,
+    email    varchar(20)  not null
+);
+
+create table roles
+(
+    id   int         not null
+        primary key,
+    name varchar(50) not null
+);
+
+create table user_roles
+(
+    user_id int not null,
+    role_id int not null,
+    primary key (user_id, role_id),
+    constraint user_roles_ibfk_1
+        foreign key (user_id) references user (id),
+    constraint user_roles_ibfk_2
+        foreign key (role_id) references roles (id)
 );
 
 create table post
